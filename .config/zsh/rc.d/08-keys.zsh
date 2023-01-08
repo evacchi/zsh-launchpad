@@ -46,3 +46,10 @@ bindkey '^[v' describe-key-briefly
     LBUFFER="sudo $LBUFFER"   # Use $LBUFFER to preserve cursor position.
   }
 } .sudo
+
+
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+bindkey -e # bash/emacs bindings
+bindkey '^W' backward-kill-word # use WORDCHARS
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
