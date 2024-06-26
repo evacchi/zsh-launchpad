@@ -8,23 +8,47 @@
 export -U PATH path FPATH fpath MANPATH manpath
 export -UT INFOPATH infopath  # -T creates a "tied" pair; see below.
 
+export GOPATH=~/.local/go
+
 # $PATH and $path (and also $FPATH and $fpath, etc.) are "tied" to each other.
 # Modifying one will also modify the other.
 # Note that each value in an array is expanded separately. Thus, we can use ~
 # for $HOME in each $path entry.
 path=(
     /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-    /usr/local/{bin,sbin}
-    /usr/local/opt/llvm/bin
     ~/.jbang/bin
     ~/.gem/ruby/2.6.0/bin
     ~/.local/bin
+    ~/sdk/go/bin
     ~/.cargo/bin
     ~/Library/Python/3.9/bin
     ~/.jbang/bin
+    $GOPATH/bin
     $NPM_PACKAGES/bin
+    ~/.dotnet/tools
+    ~/.docker/bin
+    /opt/homebrew/opt/llvm/bin
+    /usr/local/{bin,sbin}
+    ~/Devel/Apps/zig-macos-aarch64-0.11.0
     $path
 )
+
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+
+# To use the bundled libc++ please add the following LDFLAGS:
+#   LDFLAGS="-L/opt/homebrew/opt/llvm/lib/c++ -Wl,-rpath,/opt/homebrew/opt/llvm/lib/c++"
+# 
+# llvm is keg-only, which means it was not symlinked into /opt/homebrew,
+# because macOS already provides this software and installing another version in
+# parallel can cause all kinds of trouble.
+# 
+# If you need to have llvm first in your PATH, run:
+#   echo 'export PATH="/opt/homebrew/opt/llvm/bin:$PATH"' >> ~/.zshrc
+# 
+# For compilers to find llvm you may need to set:
+#   export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+#   export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
 
 # Add your functions to your $fpath, so you can autoload them.
 fpath=(
@@ -40,7 +64,7 @@ fpath=(
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-F -g -i -M -R -S -w -X -z-4'
+export LESS='-F -g -i -M -R -w -X -z-4'
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.

@@ -11,7 +11,7 @@
 # Here, it enables us to use scoped variables in our dotfiles.
 () {
   # `local` sets the variable's scope to this function and its descendendants.
-  local gitdir=~/Git  # Where to keep repos and plugins
+  local gitdir=~/Devel/config/zsh  # Where to keep repos and plugins
 
   # Load all of the files in rc.d that start with <number>- and end in .zsh
   # (n) sorts the results in numerical order.
@@ -28,3 +28,7 @@
 # "Double quotes" ensures that empty arguments '' are preserved.
 # It's a good practice to pass "$@" by default. You'd be surprised at all the
 # bugs you avoid this way.
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(starship init zsh)"
+eval "$(opam env)"
