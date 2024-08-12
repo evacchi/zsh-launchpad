@@ -19,3 +19,4 @@
 # To set a default value that is returned *without* setting X, use ${X:-Y}
 # As in other shells, ~ expands to $HOME _at the beginning of a value only._
 ZDOTDIR=${XDG_CONFIG_HOME:=~/.config}/zsh
+. "$HOME/.cargo/env"
